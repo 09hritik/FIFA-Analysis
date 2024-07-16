@@ -1,18 +1,27 @@
 import pandas as pd
+import pytest
 from Modules.data_loader import load_dataset
+from Modules.data_merger import merge_datasets  
 
+# Fixture to load datasets for testing
+@pytest.fixture
+def load_test_data():
+    matches = pd.read_csv('path/to/test/WorldCupMatches_test.csv')  # Replace with actual test file path
+    players = pd.read_csv('path/to/test/WorldCupPlayers_test.csv')  # Replace with actual test file path
+    cups = pd.read_csv('path/to/test/WorldCups_test.csv')  # Replace with actual test file path
+    return matches, players, cups
 
-def merge_datasets(matches, players, cups):
-    # Merge matches and players
-    merged_data = pd.merge(matches, players , how = 'left', on=[ 'RoundID', 'MatchID'])
-    # Merge matches and cups
-    merged_data = pd.merge(merged_data, cups, how='left', left_on='Year', right_on='Year')
-    return merged_data
-
-def main():
-    matches, players, cups = load_dataset()
+# Test case for merge_datasets function
+def test_merge_datasets(load_test_data):
+    matches, players, cups = load_test_data
     merged_data = merge_datasets(matches, players, cups)
-    print(merged_data.info(verbose=True))
+    
+    # Assertions to check merging operations
+    assert 'Home Team Goals' in merged_data.columns, "Home Team Goals column missing in merged data"
+    assert 'Away Team Goals' in merged_data.columns, "Away Team Goals column missing in merged data"
+    # Add more assertions as needed for merging operations
 
-if __name__ == '__main__':
-    main()
+# Run the tests
+if __name__ == "__main__":
+    pytest.main()
+
