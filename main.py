@@ -2,7 +2,7 @@ from Modules.data_loader import load_dataset
 from Modules.data_merger import merge_datasets
 from Modules.data_preprocessor import clean_data
 from Modules.metrics_calculator import calculate_metrics
-from Modules.eda import visualize_data
+from Modules.eda import eda
 
 def main():
 
@@ -11,7 +11,7 @@ def main():
     merged_data = merge_datasets(matches, players, cups)
     metrics = calculate_metrics(matches)
     print(metrics)
-    visualize_data(merged_data , metrics)
+    eda(merged_data)
 
 
 if __name__ == '__main__':

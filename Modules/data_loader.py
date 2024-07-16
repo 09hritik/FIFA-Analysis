@@ -1,9 +1,9 @@
 import pandas as pd
 
 def load_dataset():
-    matches = pd.read_csv('FIFA_WC/Dataset/WorldCupMatches.csv')
-    players = pd.read_csv('FIFA_WC/Dataset/WorldCupPlayers.csv')
-    cups = pd.read_csv('FIFA_WC/Dataset/WorldCups.csv')
+    matches = pd.read_csv('/Users/09hritik/ML/FIFA-Analysis/Dataset/WorldCupMatches.csv')
+    players = pd.read_csv('/Users/09hritik/ML/FIFA-Analysis/Dataset/WorldCupPlayers.csv')
+    cups = pd.read_csv('/Users/09hritik/ML/FIFA-Analysis/Dataset/WorldCups.csv')
     return matches, players, cups
 
 #def main():
